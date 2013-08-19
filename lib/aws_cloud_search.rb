@@ -64,15 +64,15 @@ module AWSCloudSearch
         when 200..299
           nil
         when 408
-          raise RequestTimeout, env[:body]
+          raise RequestTimeout, env[:body].inspect
         when 400..499
-          raise HttpClientError, env[:body]
+          raise HttpClientError, env[:body].inspect
         when 509
-          raise BandwidthLimitExceeded, env[:body]
+          raise BandwidthLimitExceeded, env[:body].inspect
         when 500..599
-          raise HttpServerError, env[:body]
+          raise HttpServerError, env[:body].inspect
         else
-          raise UnexpectedHTTPException, env[:body]
+          raise UnexpectedHTTPException, env[:body].inspect
       end
     end
 
