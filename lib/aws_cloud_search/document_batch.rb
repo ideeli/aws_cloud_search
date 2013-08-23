@@ -68,7 +68,7 @@ module AWSCloudSearch
 
     # @return [Boolean] True if the bytesize of the batch exceeds the preferred bytesize
     def full?
-      @bytesize >= @pref_bytesize
+      @bytesize >= @pref_bytesize || (@batch_add.size + @batch_delete.size >= 1000)
     end
 
     # @return [String] The JSON string representation of the DocumentBatch
