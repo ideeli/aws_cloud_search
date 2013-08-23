@@ -60,7 +60,6 @@ module AWSCloudSearch
 
     # Return this object as a hash
     def to_hash
-      @fields.delete_if {|key,val| val.nil?}
       h = {
           :type => @type,
           :id => @id,
@@ -68,11 +67,11 @@ module AWSCloudSearch
       }
 
       unless @type == 'delete'
-        h[:fields] = @fields 
+        h[:fields] = @fields.delete_if {|key,val| val.nil?}
         h[:lang] = @lang
       end
 
-      h      
+      h
     end
 
     #Return this object as json
